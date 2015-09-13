@@ -31,64 +31,103 @@ require.config({
     ]
 });
 
-define(['../../mg-gui/src/mg-gui', 'mg-sheet', 'mg-space2'], function (gui, Sheet, space2) {
+define(['mg-gui', 'mg-sheet', 'mg-space2'], function (gui, Sheet, space2) {
     var sheet = new Sheet('canvas');
-    var arrow_tool = {
-        type: 'global',
-        down: function (event) {},
-        drag: function (event) {
+    var axes0 = space2.make_axes('affine');
+    axes0.basis = [[1, 0], [-1, 0]];
+
+    var generate_additional_segment = function (project) {
+        return {
+            start_position: {
+                x: 0,
+                y: 400
+            },
+            fields: [
+                { name:'point2--x',
+                    type:'slider',
+                    value: project.point2.x,
+                    change: function(v) {
+                        project.point2.x = v;
+                    }
+                },
+                { name:'point2--y',
+                    type:'slider',
+                    value: project.point2.y,
+                    change: function(v) {
+                        project.point2.y = v;
+                    }
+                }
+            ]
+        }
+    };
+
+    var arrow_tool = sheet.use({
+        name: 'arrow',
+        target: 'sheet',
+        mode: 'single',
+        mouseDown: function (sheet, event) {},
+        mouseDrag: function (sheet, event) {
             if (!this._current) {
+
+                this._model = space2.make_segment().make_project(axes0);
                 this._current = sheet.draw_arrow(event.point, event.point);
+                var self = this;
+                this._current.on('change', function () {
+                    console.log(self._current.to.x);
+                    self._model.point1.x = self._current.from.x;
+                    self._model.point1.x = self._current.from.y;
+                    self._model.point2.x = self._current.to.x;
+                    self._model.point2.y = self._current.to.y;
+                    console.log(self._model.point2.x);
+                    self._add.fields[0].value = self._model.point2.x;
+                    self._add.fields[1].value = self._model.point2.y;
+                });
+                this._add = generate_additional_segment(self._model);
+                gui.additional.create(this._add);
             }
             this._current.to = event.point;
         },
-        up: function (event) {
+        mouseUp: function (sheet, event) {
             this._current = null;
         }
-    };
-    var circle_tool = {
-        type: 'global',
-        down: function (event) {
+    });
+    var circle_tool = sheet.use({
+        name: 'circle',
+        target: 'sheet',
+        mode: 'single',
+        mouseDown: function (sheet, event) {
             this._downPoint = event.point;
         },
-        drag: function (event) {
+        mouseDrag: function (sheet, event) {
             if (!this._current) {
                 this._current = sheet.draw_circle(event.point, 0);
             }
             this._current.fit(this._downPoint, event.point);
         },
-        up: function (event) {
+        mouseUp: function (sheet, event) {
             this._current = null;
         }
-    };
+    });
     var toolbar = {
         fields: [{
             id: 0,
             type: 'selectable',
             icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=arrow',
             callback: function () {
-                sheet.on('mouseDown', arrow_tool.down);
-                sheet.on('mouseDrag', arrow_tool.drag);
-                sheet.on('mouseUp', arrow_tool.up);
+                arrow_tool.enabled = true;
             },
             callback_disable: function () {
-                sheet.off('mouseDown', arrow_tool.down);
-                sheet.off('mouseDrag', arrow_tool.drag);
-                sheet.off('mouseUp', arrow_tool.up);
+                arrow_tool.enabled = false;
             }
         }, {
             id: 1,
             type: 'selectable',
             icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=circle',
             callback: function () {
-                sheet.on('mouseDown', circle_tool.down);
-                sheet.on('mouseDrag', circle_tool.drag);
-                sheet.on('mouseUp', circle_tool.up);
+                circle_tool.enabled = true;
             },
             callback_disable: function () {
-                sheet.off('mouseDown', circle_tool.down);
-                sheet.off('mouseDrag', circle_tool.drag);
-                sheet.off('mouseUp', circle_tool.up);
+                circle_tool.enabled = false;
             }
         }]
     };
