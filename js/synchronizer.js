@@ -9,10 +9,11 @@ define([], function () {
     }
     return function (arrowModel, arrowView, additional) {
         additional.fields[0].change = function (v) {
-            arrowModel.point2.x = v;
+            console.log(v);
+            //arrowModel.point2.x = v;
         };
         additional.fields[1].change = function (v) {
-            arrowModel.point2.y = v;
+            //arrowModel.point2.y = v;
         };
 
         function updateModel() {
