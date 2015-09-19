@@ -1,4 +1,4 @@
-define(['./core', 'mg-sheet'], function (core, Sheet) {
+define(['../core/core', 'mg-sheet'], function (core, Sheet) {
 
     core.module('sheet', [], function (moduleProto) {
         var sheet = new Sheet('canvas');

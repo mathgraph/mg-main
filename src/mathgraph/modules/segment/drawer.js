@@ -1,6 +1,5 @@
-define(['../../core'], function (core) {
-
-    core.extend('segment', ['sheet', 'selected'], function (module, sheet, selected) {
+define(['../../core/core'], function (core) {
+    core.extend('Segment', ['sheet', 'selected'], function (module, sheet, selected) {
 
         module.view(function factory(model) {
             return sheet.draw_segment(model.point1, model.point2);
@@ -36,6 +35,6 @@ define(['../../core'], function (core) {
                 module.unuse('drawer');
             }
         });
-    });
 
+    });
 });
