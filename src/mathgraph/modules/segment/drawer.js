@@ -11,17 +11,18 @@ define(['../../core/core'], function (core) {
         module.tool('drawer', {
             target: 'sheet',
             mode: 'single',
-            $_isCreating: false,
+            $_current: null,
             mouseDrag: function (sheet, event) {
-                if (!this.$_isCreating) {
-                    module.item(event.point);
-                    this.$_isCreating = true;
+                if (!this.$_current) {
+                    this.$_current = module.item(event.point);
                 }
-                selected.get().model.point2 = event.point;
+                this.$_current.model.point2 = event.point;
             },
             mouseUp: function (sheet, event) {
-                selected.get().model.point2 = event.point;
-                this.$_isCreating = false;
+                if (this.$_current) {
+                    this.$_current.model.point2 = event.point;
+                    this.$_current = null;
+                }
             }
         });
 

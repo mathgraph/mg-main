@@ -1,6 +1,7 @@
 define(['../core/core'], function (core) {
 
-    var updates = [];
+    var updates = [],
+        pause = false;
 
     core.module('item', [], function (moduleProto) {
 
@@ -11,20 +12,37 @@ define(['../core/core'], function (core) {
             item.module = module;
             item.model = module.$_model.apply(null, arguments);
             item.model.$__item = item;
-            if (module.$_views && module.$_views.default) {
-                item.view = module.$_views.default.factory(item.model);
-                item.view.$__item = item;
-                updates.push(function () {
-                    module.$_views.default.update(item.model, item.view);
-                });
-            }
-
+            item.views = {};
+            item.show = function (name) {
+                name = name || 'default';
+                if (module.$_views && module.$_views[name]) {
+                    item.views[name] = module.$_views[name].factory(item.model);
+                    item.views[name].$__item = item;
+                    item.views[name].$__updId = updates.length;
+                    updates.push(function () {
+                        module.$_views[name].update(item.model, item.views[name]);
+                    })
+                }
+            };
+            item.hide = function (name) {
+                name = name || 'default';
+                item.views &&
+                item.views[name] &&
+                item.views[name].remove &&
+                item.views[name].remove();
+                pause = true;
+                updates.splice(item.views[name].$__updId, 1);
+                pause = false;
+                delete item.views[name];
+            };
+            item.show();
             return item;
 
         };
 
-        moduleProto.view = function (name, factory, update) {
+        moduleProto.view = function (name, factory, update, remove) {
             if (typeof name !== 'string') {
+                remove = update;
                 update = factory;
                 factory = name;
                 name = 'default';
@@ -34,7 +52,8 @@ define(['../core/core'], function (core) {
             }
             this.$_views[name] = {
                 factory: factory,
-                update: update
+                update: update,
+                remove: remove
             };
         };
 
@@ -46,7 +65,7 @@ define(['../core/core'], function (core) {
 
     function updateAll() {
         updates.forEach(function (fn) {
-            fn();
+            !pause && fn();
         });
         requestAnimationFrame(updateAll);
     }

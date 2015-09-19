@@ -2,11 +2,11 @@ define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui
     core.module('additional', ['selected'], function (moduleProto, selected) {
 
         selected.on(function (item) {
-            item.view('additional');
+            item.show('additional');
         });
 
         selected.off(function (item) {
-            item.view('additional', false);
+            item.hide('additional');
         });
 
         moduleProto.additional = function (factory, update) {
@@ -21,7 +21,7 @@ define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui
             if (!module.$__additionalMap[part]) {
                 module.$__additionalMap[part] = [];
             }
-            module.$__additionalMap.push({
+            module.$__additionalMap[part].push({
                 factory: factory,
                 update: update
             });
@@ -48,15 +48,14 @@ define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui
                     }
                 });
 
-                obj = {
+                return gui.additional.create({
                     fields: fields
-                };
-                gui.additional.create(obj);
-                return obj;
+                });
             }, function update(model, additional) {
-                var currentPartId = null,
+                var data = additional.data,
+                    currentPartId = null,
                     currentPart = [];
-                additional.fields.forEach(function (f) {
+                data.fields.forEach(function (f) {
                     if (currentPartId === null) {
                         currentPartId = f.part;
                         currentPart.push(f);
@@ -68,6 +67,8 @@ define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui
                         currentPart = [f];
                     }
                 });
+            }, function remove(additional) {
+                additional.remove();
             });
 
         }
