@@ -6,7 +6,6 @@ define(['../../core/core'], function (core) {
                 type: 'slider',
                 min_value: -1000,
                 max_value: 1000,
-                value: 0,
                 init: function () {
                     this.value = model.point2.x;
                 },
@@ -18,7 +17,6 @@ define(['../../core/core'], function (core) {
                 type: 'slider',
                 min_value: -1000,
                 max_value: 1000,
-                value: 0,
                 init: function () {
                     this.value = model.point2.y;
                 },
