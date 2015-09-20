@@ -70,9 +70,16 @@ define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui
             }, function remove(additional) {
                 additional.remove();
             });
+        };
 
+        return {
+            start: function () {
+                gui.additional.default_start_position = {
+                    x: 0,
+                    y: 400
+                }
+            }
         }
-
 
     });
 });
