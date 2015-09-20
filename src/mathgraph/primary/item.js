@@ -20,9 +20,11 @@ define(['../core/core'], function (core) {
                     item.views[name].$__item = item;
                     item.views[name].$__updId = updates.length;
                     updates.push(function () {
+                        module.$_views[name].update &&
                         module.$_views[name].update(item.model, item.views[name]);
                     })
                 }
+                return item;
             };
             item.hide = function (name) {
                 name = name || 'default';
@@ -34,6 +36,7 @@ define(['../core/core'], function (core) {
                 updates.splice(item.views[name].$__updId, 1);
                 pause = false;
                 delete item.views[name];
+                return item;
             };
             item.show();
             return item;
