@@ -1,22 +1,7 @@
 define(function () {
 
     var scope = {
-        moduleProto: {
-            view: function (name, factory, update) {
-                if (typeof name !== 'string') {
-                    update = factory;
-                    factory = name;
-                    name = 'default';
-                }
-                if (!this.$_views) {
-                    this.$_views = [];
-                }
-                this.$_views.push({
-                    factory: factory,
-                    update: update
-                });
-            }
-        },
+        moduleProto: {},
         depInjection: function (deps, name) {
             var dependencies = [];
 
