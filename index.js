@@ -31,6 +31,11 @@ require.config({
     ]
 });
 
-define(['./src/core', './src/segment/segment'], function (core) {
-    core.start();
+define(['jquery', './src/mathgraph/core/core', './src/mathgraph/utils/loadSync', './loader'], function ($, core, loadSync) {
+    $(function () {
+            loadSync.start(function () {
+                core.start();
+            });
+        }
+    )
 });
