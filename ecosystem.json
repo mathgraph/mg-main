@@ -1,0 +1,25 @@
+{
+  "apps" : [{
+    "name"      : "mg-server",
+    "script"    : "app.js",
+    "env": {
+      "COMMON_ENV_VAR": "true"
+    },
+    "env_develop": {
+      "NODE_ENV": "develop"
+    }
+  }],
+  "deploy" : {
+    "production" : {
+      "user" : "sivsais",
+      "host" : {
+		  "host": "188.166.85.160",
+                  "port": "2014"
+               },
+      "repo" : "https://github.com/mathgraph/mg-server.git",
+      "ref"  : "origin/develop",
+      "path" : "/var/www/mg-main",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json --env develop"
+    }
+  }
+}
