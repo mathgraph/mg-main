@@ -10,7 +10,7 @@
     }
   }],
   "deploy" : {
-    "production" : {
+    "develop" : {
       "user" : "sivsais",
       "host" : {
 		  "host": "188.166.85.160",
