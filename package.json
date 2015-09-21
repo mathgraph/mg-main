@@ -1,0 +1,13 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "npm --prefix /var/www/mg-main/current/static install && bower cash clear && bower install --config.cwd=/var/www/mg-main/current/static"
+  },
+  "dependencies": {
+    "nconf": "~0.7.2",
+    "express": "~4.13.3",
+    "body-parser": "~1.14.0",
+    "morgan": "~1.6.1"
+  }
+}
