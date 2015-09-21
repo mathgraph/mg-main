@@ -32,8 +32,7 @@ define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui
             });
 
             module.view('additional', function factory(model) {
-                var fields = [],
-                    obj = {};
+                var fields = [];
                 module.$__additional.forEach(function (o) {
                     var tmp = o.factory(model);
                     if (utils.isArray(tmp)) {
