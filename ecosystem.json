@@ -19,7 +19,8 @@
       "repo" : "https://github.com/mathgraph/mg-main.git",
       "ref"  : "origin/develop",
       "path" : "/var/www/mg-main",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json --env develop"
+      "pre-deploy" : "rm -Rf /var/www/mg-main",
+      "post-deploy" : "npm install && bower clear cash && bower install && pm2 startOrRestart ecosystem.json --env develop"
     }
   }
 }
