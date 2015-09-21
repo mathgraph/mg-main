@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name"      : "mg-server",
+    "name"      : "mg-main",
     "script"    : "app.js",
     "env": {
       "COMMON_ENV_VAR": "true"
