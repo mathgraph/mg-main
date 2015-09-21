@@ -63,14 +63,16 @@ define(['../../core/core'], function (core) {
 
         module.view('axes', function factory(model) {
             return {
-                ox: sheet.draw_arrow(model.ox.point1, model.ox.point2),
+                ox: sheet.draw_arrow(model.ox.point1, model.ox.point2)
+                    .set('interactive', false),
                 oy: sheet.draw_arrow(model.oy.point1, model.oy.point2)
+                    .set('interactive', false)
             }
         });
 
         module.view('grid', function factory(model) {
             return model.grid.map(function (l) {
-                return sheet.draw_segment(l.point1, l.point2);
+                return sheet.draw_segment(l.point1, l.point2).set('interactive', false);
             })
         });
 
