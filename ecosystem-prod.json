@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name"      : "mg-server",
+    "name"      : "mg-main-prod",
     "script"    : "app.js",
     "env": {
       "COMMON_ENV_VAR": "true"
@@ -18,7 +18,7 @@
                },
       "repo" : "https://github.com/mathgraph/mg-main.git",
       "ref"  : "origin/master",
-      "path" : "/var/www/mg-main",
+      "path" : "/var/www/mg-main-prod",
       "post-deploy" : "npm install && bower install && pm2 startOrRestart ecosystem.json --env production"
     }
   }
