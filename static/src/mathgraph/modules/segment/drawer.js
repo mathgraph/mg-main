@@ -1,5 +1,5 @@
 define(['../../core/core'], function (core) {
-    core.extend('Segment', ['sheet', 'selected'], function (module, sheet, selected) {
+    core.extend('Segment', ['sheet'], function (module, sheet) {
 
         module.view(function factory(model) {
             return sheet.draw_segment(model.point1, model.point2);

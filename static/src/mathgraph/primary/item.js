@@ -1,7 +1,6 @@
 define(['../core/core'], function (core) {
 
-    var updates = [],
-        pause = false;
+    var updates = [];
 
     core.module('item', [], function (moduleProto) {
 
@@ -32,9 +31,7 @@ define(['../core/core'], function (core) {
                 item.views[name] &&
                 item.views[name].remove &&
                 item.views[name].remove();
-                pause = true;
                 updates.splice(item.views[name].$__updId, 1);
-                pause = false;
                 delete item.views[name];
                 return item;
             };
@@ -68,7 +65,7 @@ define(['../core/core'], function (core) {
 
     function updateAll() {
         updates.forEach(function (fn) {
-            !pause && fn();
+            fn();
         });
         requestAnimationFrame(updateAll);
     }
