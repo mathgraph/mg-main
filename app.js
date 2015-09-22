@@ -6,7 +6,6 @@ var app = express();
 app
     .use(require('body-parser').urlencoded({ extended: false }))
     .use(require('body-parser').json())
-    .use(express.static(__dirname + '/static'))
     .use(function (req, res, next) {
         var credentials = auth(req);
         var true_auth = config.get((process.env.NODE_ENV == 'production') ? 'auth_prod' : 'auth_dev');
@@ -17,7 +16,8 @@ app
         }
         else
             next();
-    });
+    })
+    .use(express.static(__dirname + '/static'));
 
 if (process.env.NODE_ENV == 'production'){
     app.listen(config.get('port_prod'), function(){
