@@ -1,4 +1,12 @@
 {
   "port_dev": 3011,
-  "port_prod": 3111
+  "port_prod": 3111,
+  "auth_dev" : {
+    "login" : "admin",
+    "password" : "qazwsx"
+  },
+  "auth_prod" : {
+    "login" : "admin",
+    "password" : "qweasd"
+  }
 }
