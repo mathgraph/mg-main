@@ -1,6 +1,6 @@
 {
   "name": "mg-main",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "dependencies": {
     "nconf": "~0.7.2",
     "express": "~4.13.3",
