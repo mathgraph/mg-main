@@ -11,7 +11,7 @@ app
         var true_auth = config.get((process.env.NODE_ENV == 'production') ? 'auth_prod' : 'auth_dev');
         if (!credentials || credentials.name !== true_auth.login || credentials.pass !== true_auth.password) {
             res.statusCode = 401;
-            res.setHeader('WWW-Authentic11ate', 'Basic realm="example"');
+            res.setHeader('WWW-Authenticate', 'Basic realm="example"');
             res.end('Access denied')
         }
         else
