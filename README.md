@@ -2,7 +2,7 @@ Main REPO
 
 #Развертывание сервера:
 
-1ый способ:
+1ый способ :
 ```bash
 #production ветка
 $pm2 deploy /path/to/ecosystem-prod.json production
