@@ -18,9 +18,13 @@ app
         } else {
             next();
         }
-    })
-    .get('/info', require('./helpers/info'))
-    .use(express.static(__dirname + '/static'));
+    });
+
+if (process.env.NODE_ENV !== 'production') {
+    app.get('/info', require('./helpers/info'))
+}
+
+app.use(express.static(__dirname + '/static'));
 
 if (process.env.NODE_ENV == 'production') {
     app.listen(config.get('port_prod'), function () {
