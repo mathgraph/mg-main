@@ -1,0 +1,35 @@
+doctype html
+
+mixin object(obj)
+    ul
+        each key in Object.keys(obj)
+            if typeof obj[key] !== 'object'
+                li
+                    span.key #{key}:&nbsp;&nbsp;
+                    span(class=typeof obj[key])=obj[key]
+            else if typeof obj[key] === 'string' && obj[key].match(/http/)
+                li
+                    span.key #{key}:&nbsp;&nbsp;
+                    a(class=typeof obj[key] href=obj[key])=obj[key]
+            else
+                li.object
+                    +object(obj[key])
+
+
+html
+    head
+        title Information
+        style
+            | pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+            | .string { color: green; }
+            | .number { color: darkorange; }
+            | .boolean { color: blue; }
+            | .null { color: magenta; }
+            | .key { color: red; }
+            | ul { list-style-type: none; }
+
+    body
+        each item in data
+            +object(item)
+            br
+            br
