@@ -7,7 +7,7 @@ mixin object(obj)
                 li
                     span.key #{key}:&nbsp;&nbsp;
                     span(class=typeof obj[key])=obj[key]
-            else if typeof obj[key] === 'string' && obj[key].slice(0, 4) === 'http'
+            else if typeof obj[key] === 'string' && obj[key].match(/http/)
                 li
                     span.key #{key}:&nbsp;&nbsp;
                     a(class=typeof obj[key] href=obj[key])=obj[key]
@@ -30,6 +30,6 @@ html
 
     body
         each item in data
-            +object(data)
+            +object(item)
             br
             br
