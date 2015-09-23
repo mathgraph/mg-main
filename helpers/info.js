@@ -23,6 +23,6 @@ module.exports = function (req, res, next) {
             obj.memory = item.monit.memory;
             return obj;
         });
-        res.render(__dirname + '/helpers/info/info.html', { data: data });
+        res.render('info', { data: data });
     });
 };

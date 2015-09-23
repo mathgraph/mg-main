@@ -4,7 +4,8 @@ var auth = require('basic-auth');
 var app = express();
 
 app
-    .set('view engine', 'ejs')
+    .set('views', __dirname + '/views')
+    .set('view engine', 'jade')
     .use(require('body-parser').urlencoded({extended: false}))
     .use(require('body-parser').json())
     .use(function (req, res, next) {
@@ -18,7 +19,7 @@ app
             next();
         }
     })
-    .get('/info', require('./helpers/info/info'))
+    .get('/info', require('./helpers/info'))
     .use(express.static(__dirname + '/static'));
 
 if (process.env.NODE_ENV == 'production') {

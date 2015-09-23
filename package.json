@@ -4,8 +4,8 @@
   "dependencies": {
     "basic-auth": "~1.0.3",
     "body-parser": "~1.14.0",
-    "ejs": "^2.3.4",
     "express": "~4.13.3",
+    "jade": "^1.11.0",
     "morgan": "~1.6.1",
     "nconf": "~0.7.2"
   }

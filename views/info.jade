@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        title Information
+    body
+        each item in data
+            div
+                ul
+                    each key in Object.keys(item)
+                        li=key + ' :: ' + item[key]
