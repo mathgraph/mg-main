@@ -11,5 +11,5 @@ html
             | .key { color: red; }
 
     body(
-        onload = 'document.body.appendChild(document.createElement("pre")).innerHTML = "' + text.split('\n').join('') + '";'
+        onload = "document.body.appendChild(document.createElement('pre')).innerHTML = '" + text.split('\n').join('') + "';"
     )
