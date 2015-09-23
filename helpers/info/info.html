@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<% for (var i = 0; i < data.length; i++) {%>
+<div>
+    <ul>
+        <% for (var j = 0, keys = Object.keys(data[i]); j < keys.length; j++) {%>
+        <li><%= keys[j] %> :: <%= data[i][keys[j]] %></li>
+        <% } %>
+    </ul>
+</div>
+<% } %>
+
+</body>
+</html>
