@@ -9,6 +9,7 @@ define(['../../core/core'], function (core) {
         });
 
         module.tool('drawer', {
+            type: 'control',
             target: 'sheet',
             mode: 'single',
             $_current: null,
