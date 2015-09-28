@@ -3,7 +3,8 @@ require.config({
     paths: {
         jquery: 'bower_components/jquery/dist/jquery',
         text: 'bower_components/text/text',
-        paper: 'bower_components/paper/dist/paper-full'
+        paper: 'bower_components/paper/dist/paper-full',
+        lodash: 'bower_components/lodash/lodash'
     },
     shim: {
         paper: {
@@ -22,7 +23,7 @@ require.config({
         }, {
             name: 'mg-sheet',
             location: 'bower_components/mg-sheet/src/mg-sheet',
-            main: 'sheet/sheet'
+            main: 'sheet/sheet.full'
         }, {
             name: 'mg-space2',
             location: 'bower_components/mg-space2/src/mg-space2',

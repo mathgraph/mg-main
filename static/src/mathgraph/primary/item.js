@@ -20,6 +20,7 @@ define(['../core/core'], function (core) {
                     item.views[name].$__updId = updates.length;
                     updates.push(function () {
                         module.$_views[name].update &&
+                        item.views[name] &&
                         module.$_views[name].update(item.model, item.views[name]);
                     })
                 }

@@ -19,7 +19,7 @@
   "dependencies": {
     "dat-gui": "~0.5.1",
     "jquery": "~2.1.4",
-    "mg-gui": "mathgraph/mg-gui#develop",
+    "mg-gui": "mathgraph/mg-gui",
     "mg-sheet": "mathgraph/mg-sheet",
     "mg-space2": "mathgraph/mg-space2",
     "paper": "~0.9.24",
