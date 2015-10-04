@@ -3,43 +3,66 @@ define(['../../core/core'], function (core) {
     core.extend('affineDrawer', ['space2', 'axes', 'sheet'], function (module, space2, axes, sheet) {
 
         module.model(function () {
-            var ox = space2.make_segment().make_project(axes.get()),
-                oy = space2.make_segment().make_project(axes.get());
+            var ox = space2.make_line(),
+                oy = space2.make_line();
 
-            ox.point1 = {
+            var spOx = ox.make_project(sheet.axes),
+                spOy = oy.make_project(sheet.axes);
+
+            spOx.point1 = {
                 x: -sheet.width / 2,
                 y: 0
             };
-            ox.point2 = {
+            spOx.point2 = {
                 x: sheet.width / 2,
                 y: 0
             };
 
-            oy.point1 = {
-                x: 0,
-                y: -sheet.height / 2
-            };
-            oy.point2 = {
+            spOy.point1 = {
                 x: 0,
                 y: sheet.height / 2
             };
+            spOy.point2 = {
+                x: 0,
+                y: -sheet.height / 2
+            };
 
             return {
-                ox: ox,
-                oy: oy
-            };
+                model: {
+                    ox: ox,
+                    oy: oy
+                },
+                axes: {
+                    ox: ox.make_project(axes.get()),
+                    oy: oy.make_project(axes.get())
+                },
+                sheet: {
+                    ox: spOx,
+                    oy: spOy
+                }
+
+            }
         });
 
         module.view('axes', function factory(model) {
+            var params = {
+                step: {
+                    length: '50',
+                    unit: 'px'
+                }
+            };
+            var content = function (o) {
+                return (+o / 10).toFixed(0);
+            };
             return {
-                ox: sheet.draw_arrow(model.ox.point1, model.ox.point2, {
+                ox: sheet.draw_arrow(model.sheet.ox.point1, model.sheet.ox.point2, {
                         strokeColor: 'black',
                         strokeWidth: 1
-                    }).ticker().grid().set('interactive', false),
-                oy: sheet.draw_arrow(model.oy.point1, model.oy.point2, {
+                    }).ticker(params).grid(params).labeled(content, params).set('interactive', false),
+                oy: sheet.draw_arrow(model.sheet.oy.point1, model.sheet.oy.point2, {
                         strokeColor: 'black',
                         strokeWidth: 1
-                    }).ticker().grid().set('interactive', false)
+                    }).ticker(params).grid(params).labeled(content, params).set('interactive', false)
             }
         });
 

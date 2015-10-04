@@ -2,10 +2,10 @@ define(['../../core/core'], function (core) {
     core.extend('Segment', ['sheet'], function (module, sheet) {
 
         module.view(function factory(model) {
-            return sheet.draw_segment(model.point1, model.point2);
+            return sheet.draw_segment(model.sheet.point1, model.sheet.point2)
         }, function update(model, view) {
-            view.from = model.point1;
-            view.to = model.point2;
+            view.from = model.sheet.point1;
+            view.to = model.sheet.point2;
         });
 
         module.tool('drawer', {
@@ -15,13 +15,14 @@ define(['../../core/core'], function (core) {
             $_current: null,
             mouseDrag: function (sheet, event) {
                 if (!this.$_current) {
-                    this.$_current = module.item(event.point);
+                    this.$_current = module.item();
+                    this.$_current.model.sheet.point1 = event.point;
                 }
-                this.$_current.model.point2 = event.point;
+                this.$_current.model.sheet.point2 = event.point;
             },
             mouseUp: function (sheet, event) {
                 if (this.$_current) {
-                    this.$_current.model.point2 = event.point;
+                    this.$_current.model.sheet.point2 = event.point;
                     this.$_current = null;
                 }
             }

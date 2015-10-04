@@ -1,10 +1,12 @@
 define(['../../core/core'], function (core) {
-    core.extend('Segment', ['space2', 'axes'], function (module, space2, axes) {
-        module.model(function (point) {
-            var res = space2.make_segment().make_project(axes.get());
-            res.point1 = point;
-            res.point2 = point;
-            return res;
+    core.extend('Segment', ['space2', 'sheet', 'axes'], function (module, space2, sheet, axes) {
+        module.model(function () {
+            var m = space2.make_segment();
+            return {
+                model: m,
+                sheet: m.make_project(sheet.axes),
+                axes: m.make_project(axes.get())
+            }
         });
     });
 });
