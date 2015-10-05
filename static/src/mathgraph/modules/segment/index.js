@@ -1,0 +1,1 @@
+define(['./model', './drawer', './additional']);

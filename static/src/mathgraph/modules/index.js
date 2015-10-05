@@ -1,0 +1,1 @@
+define(['./affineDrawer/index', './segment/index']);

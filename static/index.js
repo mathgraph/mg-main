@@ -32,11 +32,9 @@ require.config({
     ]
 });
 
-define(['jquery', './src/mathgraph/core/core', './src/mathgraph/utils/loadSync', './loader'], function ($, core, loadSync) {
+define(['jquery', './src/mathgraph/mathgraph.full'], function ($, mathgraph) {
     $(function () {
-            loadSync.start(function () {
-                core.start();
-            });
+            mathgraph.start();
         }
     )
 });
