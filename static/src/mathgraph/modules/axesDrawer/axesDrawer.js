@@ -1,6 +1,6 @@
 define(['../../core/core'], function (core) {
 
-    core.extend('affineDrawer', ['space2', 'axes', 'sheet'], function (module, space2, axes, sheet) {
+    core.extend('axesDrawer', ['space2', 'axes', 'sheet'], function (module, space2, axes, sheet) {
 
         module.model(function () {
             var ox = space2.make_line(),
