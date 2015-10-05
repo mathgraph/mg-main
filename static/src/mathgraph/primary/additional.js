@@ -1,71 +1,41 @@
-define(['../core/core', '../utils/common', 'mg-gui'], function (core, utils, gui) {
-    core.module('additional', ['selected'], function (moduleProto, selected) {
+define(['lodash', '../core/core', '../utils/common', 'mg-gui'], function (lodash, core, utils, gui) {
+    core.module('additional', ['selected', 'axes'], function (moduleProto, selected, axes) {
 
         selected.on(function (item) {
-            item.show('additional');
+            var profile = axes.get().type;
+            item.module.$_views['additional#' + profile] && item.show('additional#' + profile);
+            !item.module.$_views['additional#' + profile] &&
+            item.module.$_views['additional#default'] && item.show('additional#default');
         });
 
         selected.off(function (item) {
-            item.hide('additional');
+            _.forOwn(item.views, function (val, key) {
+                _.startsWith(key, 'additional#') && item.hide(key);
+            });
         });
 
-        moduleProto.additional = function (factory, update) {
-            var module = this,
-                part = utils.id();
+        moduleProto.additional = function (profile, factory, update) {
+            var module = this;
 
-            if (!module.$__additional) {
-                module.$__additional = [];
-                module.$__additionalMap = {};
+            if (_.isFunction(profile)) {
+                update = factory;
+                factory = profile;
+                profile = 'default';
             }
 
-            if (!module.$__additionalMap[part]) {
-                module.$__additionalMap[part] = [];
-            }
-            module.$__additionalMap[part].push({
+            module.$__additional = module.$__additional || {};
+            module.$__additional[profile] = {
                 factory: factory,
                 update: update
-            });
-            module.$__additional.push({
-                part: part,
-                factory: factory,
-                update: update
-            });
+            };
 
-            module.view('additional', function factory(model) {
-                var fields = [];
-                module.$__additional.forEach(function (o) {
-                    var tmp = o.factory(model);
-                    if (utils.isArray(tmp)) {
-                        tmp = tmp.map(function (t) {
-                            t.part = o.part;
-                            return t
-                        });
-                        fields = fields.concat(tmp);
-                    } else {
-                        tmp.part = o.part;
-                        fields.push(tmp);
-                    }
-                });
-
+            module.view('additional#' + profile, function factory(model) {
                 return gui.additional.create({
-                    fields: fields
+                    fields: module.$__additional[profile].factory(model)
                 });
             }, function update(model, additional) {
-                var data = additional.data,
-                    currentPartId = null,
-                    currentPart = [];
-                data.fields.forEach(function (f) {
-                    if (currentPartId === null) {
-                        currentPartId = f.part;
-                        currentPart.push(f);
-                    } else if (currentPartId === f.part) {
-                        currentPart.push(f);
-                    } else {
-                        module.$__additionalMap[currentPartId].update(model, currentPart);
-                        currentPartId = f.part;
-                        currentPart = [f];
-                    }
-                });
+                var data = additional.data;
+                module.$__additional[profile].update(model, data.fields);
             }, function remove(additional) {
                 additional.remove();
             });

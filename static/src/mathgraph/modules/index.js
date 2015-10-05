@@ -1,1 +1,1 @@
-define(['./affineDrawer/index', './segment/index']);
+define(['./axesDrawer/index', './axesSwitcher/index', './segment/index']);
