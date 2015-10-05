@@ -5,7 +5,9 @@ define(['../../core/core'], function (core) {
             return {
                 model: m,
                 sheet: m.make_project(sheet.axes),
-                axes: m.make_project(axes.get())
+                get axes() {
+                    return m.make_project(axes.get())
+                }
             }
         });
     });
