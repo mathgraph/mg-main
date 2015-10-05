@@ -6,7 +6,7 @@ var app = express();
 app
     .set('views', __dirname + '/views')
     .set('view engine', 'jade')
-    .use(require('body-parser').urlencoded({extended: false}))
+    .use(require('body-parser').urlencoded({extended: true}))
     .use(require('body-parser').json())
     .use(function (req, res, next) {
         var credentials = auth(req);
@@ -18,7 +18,8 @@ app
         } else {
             next();
         }
-    });
+    })
+    .use('/api/v0/polynomial/points', require('./api/v0/polynomial/points'));
 
 if (process.env.NODE_ENV !== 'production') {
     app.get('/info', require('./helpers/info'))
