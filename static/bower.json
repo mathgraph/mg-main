@@ -1,7 +1,7 @@
 {
   "name": "mathgraph",
   "main": "index.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "authors": [
     "sivsais <sivsais@gmail.com>",
     "nikeSM <abram-999@yandex.ru",
@@ -19,9 +19,9 @@
   "dependencies": {
     "dat-gui": "~0.5.1",
     "jquery": "~2.1.4",
-    "mg-gui": "mathgraph/mg-gui#develop",
-    "mg-sheet": "mathgraph/mg-sheet#develop",
-    "mg-space2": "mathgraph/mg-space2#develop",
+    "mg-gui": "mathgraph/mg-gui",
+    "mg-sheet": "mathgraph/mg-sheet",
+    "mg-space2": "mathgraph/mg-space2",
     "paper": "~0.9.24",
     "requirejs": "~2.1.20",
     "text": "~2.0.14"
