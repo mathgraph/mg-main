@@ -1,7 +1,10 @@
 define(['../core/core', 'mg-sheet'], function (core, Sheet) {
 
-    core.module('sheet', [], function (moduleProto) {
+    core.module('sheet', ['space2'], function (moduleProto, space2) {
         var sheet = new Sheet('canvas');
+
+        sheet.axes = space2.make_axes('affine');
+        sheet.axes.basis = [[10, 0], [0, -10]];
 
         moduleProto.tool = function (name, desc) {
             if (typeof name !== 'string') {
