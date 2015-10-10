@@ -1,1 +1,1 @@
-define(['./model', './drawer', './additional']);
+define(['./model', './drawer', './additional', './hint']);
