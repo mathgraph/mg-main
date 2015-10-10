@@ -1,7 +1,20 @@
 define(['lodash', '../core/core', '../utils/common', 'mg-gui'], function (lodash, core, utils, gui) {
     core.module('additional', ['selected', 'axes'], function (moduleProto, selected, axes) {
 
+        var curItem = null;
+        axes.onToggle(function () {
+            var item = curItem;
+            _.forOwn(item.views, function (val, key) {
+                _.startsWith(key, 'additional#') && item.hide(key);
+            });
+            var profile = axes.get().type;
+            item.module.$_views['additional#' + profile] && item.show('additional#' + profile);
+            !item.module.$_views['additional#' + profile] &&
+            item.module.$_views['additional#default'] && item.show('additional#default');
+        });
+
         selected.on(function (item) {
+            curItem = item;
             var profile = axes.get().type;
             item.module.$_views['additional#' + profile] && item.show('additional#' + profile);
             !item.module.$_views['additional#' + profile] &&
