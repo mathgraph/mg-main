@@ -32,9 +32,10 @@ require.config({
     ]
 });
 
-define(['jquery', './src/mathgraph/mathgraph.full'], function ($, mathgraph) {
+define(['jquery', './src/mathgraph/mathgraph.full', './canonical_test'], function ($, mathgraph, canonical_test) {
+    window.canonical_test = canonical_test;
     $(function () {
             mathgraph.start();
         }
-    )
+    );
 });

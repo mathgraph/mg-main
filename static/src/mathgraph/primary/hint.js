@@ -27,7 +27,7 @@ define(['lodash', '../core/core', 'jquery', 'mg-gui'], function (_, core, $, gui
                 hint.off();
                 this.data = this.factory();
                 hint.data = this.data;
-                this.flag && hint.on(lastPoint);
+                hint.data && this.flag && hint.on(lastPoint);
             },
             data: null,
             factory: function () {
@@ -42,7 +42,7 @@ define(['lodash', '../core/core', 'jquery', 'mg-gui'], function (_, core, $, gui
             };
             timer = setTimeout(function () {
                 hintData.update();
-                hint.on(lastPoint);
+                hint.data && hint.on(lastPoint);
                 hintData.flag = true;
             }, 1000);
         });
