@@ -4,6 +4,9 @@ define(['lodash', '../core/core', '../utils/common', 'mg-gui'], function (lodash
         var curItem = null;
         axes.onToggle(function () {
             var item = curItem;
+            if (!curItem) {
+                return;
+            }
             _.forOwn(item.views, function (val, key) {
                 _.startsWith(key, 'additional#') && item.hide(key);
             });

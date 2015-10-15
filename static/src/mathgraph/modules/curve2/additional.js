@@ -106,7 +106,6 @@ define(['../../core/core'], function (core) {
             data[5].value = eq.F;
             data[6].value = model.axes.getEccentricity();
         });
-
         module.additional('polar', function factory(model) {
             var eq = model.axes.getEquation();
             return [{
