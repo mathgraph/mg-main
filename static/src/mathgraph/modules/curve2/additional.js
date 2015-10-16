@@ -5,10 +5,10 @@ define(['../../core/core'], function (core) {
             var eq = model.axes.getEquation();
             return [{
                 name: 'A',
-                type: 'slider',
-                min_value: -50,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: -50,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.A;
                 },
@@ -19,10 +19,10 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'B',
-                type: 'slider',
-                min_value: -50,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: -50,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.B;
                 },
@@ -33,10 +33,10 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'C',
-                type: 'slider',
-                min_value: -50,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: -50,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.C;
                 },
@@ -47,10 +47,10 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'D',
-                type: 'slider',
-                min_value: -50,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: -50,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.D;
                 },
@@ -61,10 +61,10 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'E',
-                type: 'slider',
-                min_value: -50,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: -50,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.E;
                 },
@@ -75,10 +75,10 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'F',
-                type: 'slider',
-                min_value: -50,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: -50,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.F;
                 },
@@ -89,7 +89,7 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'Ecc',
-                type: 'slider',
+                type: 'number',
                 step: 0.1,
                 init: function () {
                     this.value = model.axes.getEccentricity();
@@ -110,10 +110,10 @@ define(['../../core/core'], function (core) {
             var eq = model.axes.getEquation();
             return [{
                 name: 'p',
-                type: 'slider',
-                min_value: 1,
-                step: 1,
-                max_value: 50,
+                type: 'number',
+                //min_value: 1,
+                step: 0.1,
+                //max_value: 50,
                 init: function () {
                     this.value = eq.p;
                 },
@@ -124,25 +124,24 @@ define(['../../core/core'], function (core) {
                 }
             }, {
                 name: 'e',
-                type: 'slider',
-                min_value: 0,
+                type: 'number',
+                //min_value: 0,
                 step: 0.1,
-                max_value: 5,
+                //max_value: 5,
                 init: function () {
                     this.value = eq.e;
                 },
                 change: function () {
                     var eq = model.axes.getEquation();
                     eq.e = this.value;
-                    console.log(eq);
                     model.axes.setEquation(eq);
                 }
             }, {
                 name: 'alpha',
-                type: 'slider',
-                min_value: -Math.PI,
+                type: 'number',
+                //min_value: -Math.PI,
                 step: 0.01,
-                max_value: Math.PI,
+                //max_value: Math.PI,
                 init: function () {
                     this.value = eq.alpha;
                 },
