@@ -5,6 +5,36 @@ define(['../../core/core'], function (core) {
             var eq = model.axes.getEquation(),
                 can = model.axes.getCanonical() || {};
             return [{
+                name: 'type',
+                type: 'select',
+                content: ['Ellipse', 'Hyperbolic', 'Parabolic', 'Other'],
+                init: function () {
+                    this.value = this.content.indexOf(model.model.getType()) === -1 ? 'Other' : model.model.getType();
+                },
+                change: function () {
+                    var can = model.axes.getCanonical();
+                    can.type = this.value;
+                    switch (this.value) {
+                        case 'Ellipse':
+                            can.a2 = can.a2 || 1;
+                            can.b2 = can.b2 || 1;
+                            break;
+                        case 'Hyperbolic':
+                            can.a2 = can.a2 || 1;
+                            can.b2 = can.b2 || 1;
+                            break;
+                        case 'Parabolic':
+                            can.p = can.p || 1;
+                            break;
+                        case 'Other':
+                            can.a2 = 0;
+                            can.b2 = 0;
+                            can.p = 0;
+                            break;
+                    }
+                    model.axes.setCanonical(can);
+                }
+            }, {
                 name: 'a^2',
                 type: 'number',
                 min_value: 0,
@@ -13,7 +43,12 @@ define(['../../core/core'], function (core) {
                 init: function () {
                     this.value = can.a2 || -1;
                 },
-                change: function () {}
+                change: function () {
+                    var can = model.axes.getCanonical();
+                    can.a2 = this.value;
+                    can.type = model.model.getType();
+                    model.axes.setCanonical(can);
+                }
             }, {
                 name: 'b^2',
                 type: 'number',
@@ -23,7 +58,12 @@ define(['../../core/core'], function (core) {
                 init: function () {
                     this.value = can.b2 || -1;
                 },
-                change: function () {}
+                change: function () {
+                    var can = model.axes.getCanonical();
+                    can.b2 = this.value;
+                    can.type = model.model.getType();
+                    model.axes.setCanonical(can);
+                }
             }, {
                 name: 'p',
                 type: 'number',
@@ -33,7 +73,12 @@ define(['../../core/core'], function (core) {
                 init: function () {
                     this.value = can.p || -1;
                 },
-                change: function () {}
+                change: function () {
+                    var can = model.axes.getCanonical();
+                    can.p = this.value;
+                    can.type = model.model.getType();
+                    model.axes.setCanonical(can);
+                }
             }, {
                 name: 'epsilon',
                 type: 'number',
@@ -133,17 +178,18 @@ define(['../../core/core'], function (core) {
         }, function update(model, data) {
             var eq = model.axes.getEquation(),
                 can = model.axes.getCanonical() || {};
-            data[0].value = can.a2 || -1;
-            data[1].value = can.b2 || -1;
-            data[2].value = can.p || -1;
-            data[3].value = model.axes.getEccentricity();
+            data[0].value = data[0].content.indexOf(model.model.getType()) === -1 ? 'Other' : model.model.getType();
+            data[1].value = can.a2 || -1;
+            data[2].value = can.b2 || -1;
+            data[3].value = can.p || -1;
+            data[4].value = model.axes.getEccentricity();
 
-            data[4].fields[0].value = eq.A;
-            data[4].fields[1].value = eq.B;
-            data[4].fields[2].value = eq.C;
-            data[4].fields[3].value = eq.D;
-            data[4].fields[4].value = eq.E;
-            data[4].fields[5].value = eq.F;
+            data[5].fields[0].value = eq.A;
+            data[5].fields[1].value = eq.B;
+            data[5].fields[2].value = eq.C;
+            data[5].fields[3].value = eq.D;
+            data[5].fields[4].value = eq.E;
+            data[5].fields[5].value = eq.F;
         });
         module.additional('polar', function factory(model) {
             var eq = model.axes.getEquation();
