@@ -46,7 +46,6 @@ define(['lodash', '../core/core', '../utils/common', 'mg-gui'], function (lodash
             };
 
             module.view('additional#' + profile, function factory(model) {
-                console.log(module.$__additional[profile].factory(model));
                 return gui.additional.create({
                     fields: module.$__additional[profile].factory(model)
                 });
