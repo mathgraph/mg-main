@@ -136,14 +136,14 @@ define(['../../core/core'], function (core) {
             data[0].value = can.a2 || -1;
             data[1].value = can.b2 || -1;
             data[2].value = can.p || -1;
+            data[3].value = model.axes.getEccentricity();
 
-            data[3].fields[0].value = eq.A;
-            data[3].fields[1].value = eq.B;
-            data[3].fields[2].value = eq.C;
-            data[3].fields[3].value = eq.D;
-            data[3].fields[4].value = eq.E;
-            data[3].fields[5].value = eq.F;
-            data[3].fields[6].value = model.axes.getEccentricity();
+            data[4].fields[0].value = eq.A;
+            data[4].fields[1].value = eq.B;
+            data[4].fields[2].value = eq.C;
+            data[4].fields[3].value = eq.D;
+            data[4].fields[4].value = eq.E;
+            data[4].fields[5].value = eq.F;
         });
         module.additional('polar', function factory(model) {
             var eq = model.axes.getEquation();
