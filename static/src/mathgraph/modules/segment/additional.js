@@ -6,9 +6,10 @@ define(['../../core/core'], function (core) {
                 folder_name: 'start',
                 fields: [{
                     name: 'x',
-                    type: 'slider',
-                    min_value: -50,
-                    max_value: 50,
+                    type: 'number',
+                    //min_value: -50,
+                    //max_value: 50,
+                    step: 0.01,
                     init: function () {
                         this.value = model.axes.point1.x;
                     },
@@ -17,9 +18,11 @@ define(['../../core/core'], function (core) {
                     }
                 }, {
                     name: 'y',
-                    type: 'slider',
-                    min_value: -50,
-                    max_value: 50,
+                    type: 'number',
+                    //min_value: -50,
+                    //max_value: 50,
+                    step: 0.01,
+                    value: model.axes.point1.y,
                     init: function () {
                         this.value = model.axes.point1.y;
                     },
@@ -31,9 +34,11 @@ define(['../../core/core'], function (core) {
                 folder_name: 'end',
                 fields: [{
                     name: 'x',
-                    type: 'slider',
-                    min_value: -50,
-                    max_value: 50,
+                    type: 'number',
+                    //min_value: -50,
+                    //max_value: 50,
+                    step: 0.01,
+                    value: model.axes.point2.y,
                     init: function () {
                         this.value = model.axes.point2.x;
                     },
@@ -42,9 +47,10 @@ define(['../../core/core'], function (core) {
                     }
                 }, {
                     name: 'y',
-                    type: 'slider',
-                    min_value: -50,
-                    max_value: 50,
+                    type: 'number',
+                    //min_value: -50,
+                    //max_value: 50,
+                    step: 0.01,
                     init: function () {
                         this.value = model.axes.point2.y;
                     },
@@ -66,9 +72,10 @@ define(['../../core/core'], function (core) {
                 folder_name: 'start',
                 fields: [{
                     name: 'r',
-                    type: 'slider',
-                    min_value: 0,
-                    max_value: 50,
+                    type: 'number',
+                    //min_value: 0,
+                    //max_value: 50,
+                    step: 0.01,
                     init: function () {
                         this.value = model.axes.point1.r;
                     },
@@ -77,9 +84,9 @@ define(['../../core/core'], function (core) {
                     }
                 }, {
                     name: 'phi',
-                    type: 'slider',
-                    min_value: -Math.PI,
-                    max_value: Math.PI,
+                    type: 'number',
+                    //min_value: -Math.PI,
+                    //max_value: Math.PI,
                     step: 0.01,
                     init: function () {
                         this.value = model.axes.point1.phi;
@@ -92,9 +99,10 @@ define(['../../core/core'], function (core) {
                 folder_name: 'end',
                 fields: [{
                     name: 'r',
-                    type: 'slider',
-                    min_value: 0,
-                    max_value: 50,
+                    type: 'number',
+                    //min_value: 0,
+                    //max_value: 50,
+                    step: 0.01,
                     init: function () {
                         this.value = model.axes.point2.r;
                     },
@@ -103,9 +111,9 @@ define(['../../core/core'], function (core) {
                     }
                 }, {
                     name: 'phi',
-                    type: 'slider',
-                    min_value: -Math.PI,
-                    max_value: Math.PI,
+                    type: 'number',
+                    //min_value: -Math.PI,
+                    //max_value: Math.PI,
                     step: 0.01,
                     init: function () {
                         this.value = model.axes.point2.phi;
