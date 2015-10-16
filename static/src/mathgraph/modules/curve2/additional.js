@@ -2,118 +2,157 @@ define(['../../core/core'], function (core) {
     core.extend('Curve2', [], function (module) {
 
         module.additional('affine', function factory(model) {
-            var eq = model.axes.getEquation();
+            var eq = model.axes.getEquation(),
+                can = model.axes.getCanonical() || {};
             return [{
-                name: 'A',
+                name: 'a^2',
                 type: 'number',
-                //min_value: -50,
-                step: 0.1,
-                //max_value: 50,
+                min_value: 0,
+                step: 0.001,
+                max_value: 25,
                 init: function () {
-                    this.value = eq.A;
+                    this.value = can.a2 || -1;
                 },
-                change: function () {
-                    var eq = model.axes.getEquation();
-                    eq.A = this.value;
-                    model.axes.setEquation(eq);
-                }
+                change: function () {}
             }, {
-                name: 'B',
+                name: 'b^2',
                 type: 'number',
-                //min_value: -50,
-                step: 0.1,
-                //max_value: 50,
+                min_value: 0,
+                step: 0.001,
+                max_value: 25,
                 init: function () {
-                    this.value = eq.B;
+                    this.value = can.b2 || -1;
                 },
-                change: function () {
-                    var eq = model.axes.getEquation();
-                    eq.B = this.value;
-                    model.axes.setEquation(eq);
-                }
+                change: function () {}
             }, {
-                name: 'C',
+                name: 'p',
                 type: 'number',
-                //min_value: -50,
-                step: 0.1,
-                //max_value: 50,
+                min_value: 0,
+                step: 0.001,
+                max_value: 25,
                 init: function () {
-                    this.value = eq.C;
+                    this.value = can.p || -1;
                 },
-                change: function () {
-                    var eq = model.axes.getEquation();
-                    eq.C = this.value;
-                    model.axes.setEquation(eq);
-                }
+                change: function () {}
             }, {
-                name: 'D',
+                name: 'epsilon',
                 type: 'number',
-                //min_value: -50,
-                step: 0.1,
-                //max_value: 50,
-                init: function () {
-                    this.value = eq.D;
-                },
-                change: function () {
-                    var eq = model.axes.getEquation();
-                    eq.D = this.value;
-                    model.axes.setEquation(eq);
-                }
-            }, {
-                name: 'E',
-                type: 'number',
-                //min_value: -50,
-                step: 0.1,
-                //max_value: 50,
-                init: function () {
-                    this.value = eq.E;
-                },
-                change: function () {
-                    var eq = model.axes.getEquation();
-                    eq.E = this.value;
-                    model.axes.setEquation(eq);
-                }
-            }, {
-                name: 'F',
-                type: 'number',
-                //min_value: -50,
-                step: 0.1,
-                //max_value: 50,
-                init: function () {
-                    this.value = eq.F;
-                },
-                change: function () {
-                    var eq = model.axes.getEquation();
-                    eq.F = this.value;
-                    model.axes.setEquation(eq);
-                }
-            }, {
-                name: 'Ecc',
-                type: 'number',
-                step: 0.1,
+                step: 0.001,
                 init: function () {
                     this.value = model.axes.getEccentricity();
                 },
                 change: function () {}
+            }, {
+                folder_name: 'traditional',
+                fields: [{
+                    name: 'A',
+                    type: 'number',
+                    min_value: -5,
+                    step: 0.1,
+                    max_value: 5,
+                    init: function () {
+                        this.value = eq.A;
+                    },
+                    change: function () {
+                        var eq = model.axes.getEquation();
+                        eq.A = this.value;
+                        model.axes.setEquation(eq);
+                    }
+                }, {
+                    name: 'B',
+                    type: 'number',
+                    min_value: -5,
+                    step: 0.1,
+                    max_value: 5,
+                    init: function () {
+                        this.value = eq.B;
+                    },
+                    change: function () {
+                        var eq = model.axes.getEquation();
+                        eq.B = this.value;
+                        model.axes.setEquation(eq);
+                    }
+                }, {
+                    name: 'C',
+                    type: 'number',
+                    min_value: -5,
+                    step: 0.1,
+                    max_value: 5,
+                    init: function () {
+                        this.value = eq.C;
+                    },
+                    change: function () {
+                        var eq = model.axes.getEquation();
+                        eq.C = this.value;
+                        model.axes.setEquation(eq);
+                    }
+                }, {
+                    name: 'D',
+                    type: 'number',
+                    min_value: -5,
+                    step: 0.1,
+                    max_value: 5,
+                    init: function () {
+                        this.value = eq.D;
+                    },
+                    change: function () {
+                        var eq = model.axes.getEquation();
+                        eq.D = this.value;
+                        model.axes.setEquation(eq);
+                    }
+                }, {
+                    name: 'E',
+                    type: 'number',
+                    min_value: -5,
+                    step: 0.1,
+                    max_value: 5,
+                    init: function () {
+                        this.value = eq.E;
+                    },
+                    change: function () {
+                        var eq = model.axes.getEquation();
+                        eq.E = this.value;
+                        model.axes.setEquation(eq);
+                    }
+                }, {
+                    name: 'F',
+                    type: 'number',
+                    min_value: -5,
+                    step: 0.1,
+                    max_value: 5,
+                    init: function () {
+                        this.value = eq.F;
+                    },
+                    change: function () {
+                        var eq = model.axes.getEquation();
+                        eq.F = this.value;
+                        model.axes.setEquation(eq);
+                    }
+                }]
             }];
         }, function update(model, data) {
-            var eq = model.axes.getEquation();
-            data[0].value = eq.A;
-            data[1].value = eq.B;
-            data[2].value = eq.C;
-            data[3].value = eq.D;
-            data[4].value = eq.E;
-            data[5].value = eq.F;
-            data[6].value = model.axes.getEccentricity();
+            var eq = model.axes.getEquation(),
+                can = model.axes.getCanonical() || {};
+            data[0].value = can.a2 || -1;
+            data[1].value = can.b2 || -1;
+            data[2].value = can.p || -1;
+
+            data[3].fields[0].value = eq.A;
+            data[3].fields[1].value = eq.B;
+            data[3].fields[2].value = eq.C;
+            data[3].fields[3].value = eq.D;
+            data[3].fields[4].value = eq.E;
+            data[3].fields[5].value = eq.F;
+            data[3].fields[6].value = model.axes.getEccentricity();
         });
         module.additional('polar', function factory(model) {
             var eq = model.axes.getEquation();
             return [{
                 name: 'p',
                 type: 'number',
-                //min_value: 1,
+                min_value: 0.01,
                 step: 0.1,
-                //max_value: 50,
+                max_value: 5,
                 init: function () {
                     this.value = eq.p;
                 },
@@ -125,9 +164,9 @@ define(['../../core/core'], function (core) {
             }, {
                 name: 'e',
                 type: 'number',
-                //min_value: 0,
+                min_value: 0,
                 step: 0.1,
-                //max_value: 5,
+                max_value: 5,
                 init: function () {
                     this.value = eq.e;
                 },
@@ -139,9 +178,9 @@ define(['../../core/core'], function (core) {
             }, {
                 name: 'alpha',
                 type: 'number',
-                //min_value: -Math.PI,
+                min_value: -Math.PI,
                 step: 0.01,
-                //max_value: Math.PI,
+                max_value: Math.PI,
                 init: function () {
                     this.value = eq.alpha;
                 },
