@@ -36,6 +36,13 @@ define(['../core/core'], function (core) {
                 delete item.views[name];
                 return item;
             };
+            item.remove = function () {
+                item.views && Object.keys(item.views).forEach(function (name) {
+                    item.views[name].remove && item.views[name].remove();
+                    updates.splice(item.views[name].$__updId, 1);
+                    delete item.views[name];
+                });
+            };
             item.show();
             return item;
 
