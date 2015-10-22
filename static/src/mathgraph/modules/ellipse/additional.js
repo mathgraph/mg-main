@@ -26,6 +26,7 @@ define(['../../core/core'], function (core) {
                 name: 'Focal argument',
                 type: 'number',
                 min_value: 0.01,
+                editable: false,
                 step: 0.01,
                 init: function () {
                     this.value = model.axes.p;
@@ -33,6 +34,7 @@ define(['../../core/core'], function (core) {
             }, {
                 name: 'Eccentricity',
                 type: 'number',
+                editable: false,
                 step: 0.01,
                 init: function () {
                     this.value = model.axes.eccentricity;
