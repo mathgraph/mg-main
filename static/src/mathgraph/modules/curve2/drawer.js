@@ -74,13 +74,13 @@ define(['../../core/core'], function (core) {
             view.recalc();
         });
 
-        module.toolbar({
-            type: 'button',
-            icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=curve2',
-            select: function () {
-                module.item();
-            }
-        });
+        // module.toolbar({
+        //     type: 'button',
+        //     icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=curve2',
+        //     select: function () {
+        //         module.item();
+        //     }
+        // });
 
     });
 });

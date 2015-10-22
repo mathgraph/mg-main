@@ -27,6 +27,7 @@ define(['../../core/core'], function (core) {
                 type: 'number',
                 min_value: 0.01,
                 step: 0.01,
+                editable: false,
                 init: function () {
                     this.value = model.axes.p;
                 }
@@ -34,6 +35,7 @@ define(['../../core/core'], function (core) {
                 name: 'Eccentricity',
                 type: 'number',
                 step: 0.01,
+                editable: false,
                 init: function () {
                     this.value = model.axes.eccentricity;
                 }

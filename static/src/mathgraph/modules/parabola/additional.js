@@ -17,6 +17,7 @@ define(['../../core/core'], function (core) {
                 name: 'Eccentricity',
                 type: 'number',
                 value: 1,
+                editable: false,
                 change: function () {
                     this.value = 1;
                 }
