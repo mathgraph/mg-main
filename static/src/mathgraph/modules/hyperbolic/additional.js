@@ -41,6 +41,13 @@ define(['../../core/core'], function (core) {
                 init: function () {
                     this.value = model.axes.eccentricity;
                 }
+            }, {
+                name: 'Сопряженная',
+                type: 'checkbox',
+                value: false,
+                change: function (value) {
+                    model.conjugate = !!value;
+                }
             }];
         }, function update(model, data) {
             data[0].value = model.axes.a;
