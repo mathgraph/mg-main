@@ -44,8 +44,7 @@ define(['../../core/core'], function (core) {
                 case 'Point':
                 case 'Two intersecting lines':
                 case 'Line':
-                    //return [[x0, calc(eq, {x: x0})]];
-                    //break;
+                    return [[0, calc(eq, {x: 0})]];
                 case 'Hyperbolic':
                 case 'Two parallel lines':
                     return [[calc(eq, {y: 0}), 0], [0, calc(eq, {x: 0})]];
@@ -67,20 +66,22 @@ define(['../../core/core'], function (core) {
 
         module.view(function factory(model) {
             var eq = model.sheet.getEquation();
+            // return sheet.draw_curve2(eq);
             return sheet.draw_polynomial(getCoeff(eq), calcPoints(model), {radius: 2, eps: 0.02});
         }, function update(model, view) {
             view.coefficients = getCoeff(model.sheet.getEquation());
             view.points = calcPoints(model);
             view.recalc();
+            // view.coefficients = model.sheet.getEquation();
         });
 
-        // module.toolbar({
-        //     type: 'button',
-        //     icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=curve2',
-        //     select: function () {
-        //         module.item();
-        //     }
-        // });
+        module.toolbar({
+            type: 'button',
+            icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=curve2',
+            select: function () {
+                module.item();
+            }
+        });
 
     });
 });

@@ -5,7 +5,8 @@ define(['../../core/core'], function (core) {
             return [{
                 name: 'a',
                 type: 'number',
-                step: 0.01,
+                min_value: 0.1,
+                step: 0.1,
                 init: function () {
                     this.value = model.axes.a;
                 },
@@ -15,7 +16,8 @@ define(['../../core/core'], function (core) {
             }, {
                 name: 'b',
                 type: 'number',
-                step: 0.01,
+                min_value: 0.38,
+                step: 0.1,
                 init: function () {
                     this.value = model.axes.b;
                 },
@@ -25,8 +27,8 @@ define(['../../core/core'], function (core) {
             }, {
                 name: 'Focal argument',
                 type: 'number',
-                min_value: 0.01,
-                step: 0.01,
+                min_value: 0.05,
+                step: 0.1,
                 editable: false,
                 init: function () {
                     this.value = model.axes.p;
@@ -34,10 +36,17 @@ define(['../../core/core'], function (core) {
             }, {
                 name: 'Eccentricity',
                 type: 'number',
-                step: 0.01,
+                step: 0.1,
                 editable: false,
                 init: function () {
                     this.value = model.axes.eccentricity;
+                }
+            }, {
+                name: 'Сопряженная',
+                type: 'checkbox',
+                value: false,
+                change: function (value) {
+                    model.conjugate = !!value;
                 }
             }];
         }, function update(model, data) {
@@ -51,8 +60,8 @@ define(['../../core/core'], function (core) {
             return [{
                 name: 'p',
                 type: 'number',
-                min_value: 0.01,
-                step: 0.01,
+                min_value: 0.1,
+                step: 0.1,
                 init: function () {
                     this.value = model.axes.p;
                 },
@@ -63,7 +72,7 @@ define(['../../core/core'], function (core) {
                 name: 'eps',
                 type: 'number',
                 min_value: 1.01,
-                step: 0.01,
+                step: 0.1,
                 init: function () {
                     this.value = model.axes.eps;
                 },
