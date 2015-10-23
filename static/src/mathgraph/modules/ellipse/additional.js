@@ -51,7 +51,7 @@ define(['../../core/core'], function (core) {
             return [{
                 name: 'p',
                 type: 'number',
-                min_value: 0.01,
+                min_value: 0.05,
                 step: 0.01,
                 init: function () {
                     this.value = model.axes.p;
