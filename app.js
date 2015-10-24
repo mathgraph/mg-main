@@ -7,21 +7,21 @@ app
     .set('views', __dirname + '/views')
     .set('view engine', 'jade')
     .use(require('body-parser').urlencoded({extended: false}))
-    .use(require('body-parser').json())
-    .use(function (req, res, next) {
-        var credentials = auth(req);
-        var true_auth = config.get((process.env.NODE_ENV === 'production') ? 'auth_prod' : 'auth_dev');
-        if (!credentials || credentials.name !== true_auth.login || credentials.pass !== true_auth.password) {
-            res.statusCode = 401;
-            res.setHeader('WWW-Authenticate', 'Basic realm="example"');
-            res.end('Access denied')
-        } else {
-            next();
-        }
-    });
+    .use(require('body-parser').json());
+    // .use(function (req, res, next) {
+    //     var credentials = auth(req);
+    //     var true_auth = config.get((process.env.NODE_ENV === 'production') ? 'auth_prod' : 'auth_dev');
+    //     if (!credentials || credentials.name !== true_auth.login || credentials.pass !== true_auth.password) {
+    //         res.statusCode = 401;
+    //         res.setHeader('WWW-Authenticate', 'Basic realm="example"');
+    //         res.end('Access denied')
+    //     } else {
+    //         next();
+    //     }
+    // });
 
 if (process.env.NODE_ENV !== 'production') {
-    app.get('/info', require('./helpers/info'))
+    app.get('/info', require('./helpers/info'));
 }
 
 app.use(express.static(__dirname + '/static'));

@@ -66,6 +66,7 @@ define(['../../core/core'], function (core) {
 
         module.view(function factory(model) {
             var eq = model.sheet.getEquation();
+            console.log(eq);
             // return sheet.draw_curve2(eq);
             return sheet.draw_polynomial(getCoeff(eq), calcPoints(model), {radius: 2, eps: 0.02});
         }, function update(model, view) {

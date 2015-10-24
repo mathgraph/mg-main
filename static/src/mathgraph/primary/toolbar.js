@@ -14,7 +14,7 @@ define(['../core/core', 'mg-gui'], function (core, gui) {
                 gui.toolbar.on(fullToolbar);
             },
             start: function () {
-                gui.toolbar.init(document.getElementById('toolbar'), 2, 1);
+                gui.toolbar.init(document.getElementById('toolbar'), 1, 1);
                 gui.toolbar.on(fullToolbar);
             }
         }
