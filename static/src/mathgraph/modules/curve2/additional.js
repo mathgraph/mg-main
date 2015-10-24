@@ -16,9 +16,10 @@ define(['../../core/core'], function (core) {
             }, {
                     name: 'A',
                     type: 'number',
-                    min_value: -5,
+                    min_value: -300,
                     step: 0.1,
-                    max_value: 5,
+                    max_value: 300,
+                    editable: true,
                     init: function () {
                         this.value = eq.A;
                     },
@@ -30,9 +31,10 @@ define(['../../core/core'], function (core) {
                 }, {
                     name: 'B',
                     type: 'number',
-                    min_value: -5,
+                    min_value: -300,
                     step: 0.1,
-                    max_value: 5,
+                    max_value: 300,
+                    editable: true,
                     init: function () {
                         this.value = eq.B;
                     },
@@ -44,9 +46,10 @@ define(['../../core/core'], function (core) {
                 }, {
                     name: 'C',
                     type: 'number',
-                    min_value: -5,
+                    min_value: -300,
                     step: 0.1,
-                    max_value: 5,
+                    max_value: 300,
+                    editable: true,
                     init: function () {
                         this.value = eq.C;
                     },
@@ -58,9 +61,10 @@ define(['../../core/core'], function (core) {
                 }, {
                     name: 'D',
                     type: 'number',
-                    min_value: -5,
+                    min_value: -300,
                     step: 0.1,
-                    max_value: 5,
+                    max_value: 300,
+                    editable: true,
                     init: function () {
                         this.value = eq.D;
                     },
@@ -72,9 +76,10 @@ define(['../../core/core'], function (core) {
                 }, {
                     name: 'E',
                     type: 'number',
-                    min_value: -5,
+                    min_value: -300,
                     step: 0.1,
-                    max_value: 5,
+                    max_value: 300,
+                    editable: true,
                     init: function () {
                         this.value = eq.E;
                     },
@@ -86,9 +91,10 @@ define(['../../core/core'], function (core) {
                 }, {
                     name: 'F',
                     type: 'number',
-                    min_value: -5,
+                    min_value: -400,
                     step: 0.1,
-                    max_value: 5,
+                    max_value: 400,
+                    editable: true,
                     init: function () {
                         this.value = eq.F;
                     },
@@ -110,11 +116,26 @@ define(['../../core/core'], function (core) {
             data[6].value = eq.F;
         });
         module.additional('polar', function factory(model) {
-            return [];
+            var eq = model.axes.getEquation();
+            return [{
+                name: 'p',
+                type: 'number',
+                editable: false,
+                init: function () {
+                    this.value = eq.p;
+                }
+            }, {
+                name: 'e',
+                type: 'number',
+                editable: false,
+                init: function () {
+                    this.value = eq.e;
+                }
+            }];
         }, function update(model, data) {
-            // var eq = model.axes.getEquation();
-            // data[0].value = eq.p;
-            // data[1].value = eq.e;
+            var eq = model.axes.getEquation();
+            data[0].value = eq.p;
+            data[1].value = eq.e;
             // data[2].value = eq.alpha;
         });
 
