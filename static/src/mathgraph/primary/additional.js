@@ -60,7 +60,7 @@ define(['lodash', '../core/core', '../utils/common', 'mg-gui'], function (lodash
         return {
             start: function () {
                 gui.additional.default_start_position = {
-                    x: 0,
+                    x: 70,
                     y: 400
                 }
             }
