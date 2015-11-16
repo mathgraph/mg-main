@@ -53,27 +53,12 @@ define(['../../core/core'], function (core) {
             }
         }
 
-        function getCoeff(eq) {
-            return [
-                [eq.A, 2, 0],
-                [eq.B, 0, 2],
-                [eq.C, 1, 1],
-                [eq.D, 1, 0],
-                [eq.E, 0, 1],
-                [eq.F, 0, 0]
-            ];
-        }
-
         module.view(function factory(model) {
             var eq = model.sheet.getEquation();
             console.log(eq);
-            // return sheet.draw_curve2(eq);
-            return sheet.draw_polynomial(getCoeff(eq), calcPoints(model), {radius: 2, eps: 0.02});
+            return sheet.draw_curve2(eq);
         }, function update(model, view) {
-            view.coefficients = getCoeff(model.sheet.getEquation());
-            view.points = calcPoints(model);
-            view.recalc();
-            // view.coefficients = model.sheet.getEquation();
+            view.coefficients = model.sheet.getEquation();
         });
 
         module.toolbar({

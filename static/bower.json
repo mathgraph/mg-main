@@ -20,7 +20,7 @@
     "dat-gui": "~0.5.1",
     "jquery": "~2.1.4",
     "mg-gui": "mathgraph/mg-gui#develop",
-    "mg-sheet": "mathgraph/mg-sheet",
+    "mg-sheet": "mathgraph/mg-sheet#develop",
     "mg-space2": "mathgraph/mg-space2#develop",
     "paper": "~0.9.24",
     "requirejs": "~2.1.20",
