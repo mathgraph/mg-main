@@ -63,7 +63,7 @@ define(['../../core/core'], function (core) {
 
         module.toolbar({
             type: 'button',
-            icon: 'http://dummyimage.com/50x50/ad6685/0c00f0.png&text=curve2',
+            icon: '../../../icons/curve.svg',
             select: function () {
                 module.item();
             }
