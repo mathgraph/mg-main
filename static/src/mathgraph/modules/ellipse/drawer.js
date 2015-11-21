@@ -25,7 +25,7 @@ define(['../../core/core'], function (core) {
 
         module.toolbar({
             type: 'button',
-            icon: '../../icons/ellipse.svg',
+            icon: '/icons/ellipse.svg',
             select: function () {
                 module.item();
             }

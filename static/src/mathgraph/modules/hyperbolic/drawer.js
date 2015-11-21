@@ -57,7 +57,7 @@ define(['../../core/core'], function (core) {
 
         module.toolbar({
             type: 'button',
-            icon: '../../icons/hyperbolic.svg',
+            icon: '/icons/hyperbolic.svg',
             select: function () {
                 module.item().show('conjugate');
             }
