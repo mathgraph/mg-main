@@ -30,7 +30,7 @@ define(['../../core/core'], function (core) {
 
         module.toolbar({
             type: 'selectable',
-            icon: '../../../icons/line.svg',
+            icon: '../../icons/line.svg',
             select: function () {
                 module.use('drawer');
             },

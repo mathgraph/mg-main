@@ -26,7 +26,7 @@ define(['../../core/core'], function (core) {
 
         module.toolbar({
             type: 'selectable',
-            icon: '../../../icons/point.svg',
+            icon: '../../icons/point.svg',
             select: function () {
                 module.use('drawer');
             },

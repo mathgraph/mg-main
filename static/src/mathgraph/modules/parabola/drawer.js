@@ -33,7 +33,7 @@ define(['../../core/core'], function (core) {
 
         module.toolbar({
             type: 'button',
-            icon: '../../../icons/parabolic.svg',
+            icon: '../../icons/parabolic.svg',
             select: function () {
                 module.item();
             }
