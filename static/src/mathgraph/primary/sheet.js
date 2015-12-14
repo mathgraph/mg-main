@@ -4,8 +4,8 @@ define(['../core/core', 'mg-sheet'], function (core, Sheet) {
         var sheet = new Sheet('canvas');
 
         sheet.axes = space2.make_axes('affine');
-        sheet.axes.basis = [[10, 0], [0, -10]];
-
+        sheet.axes.basis = [[50, 0], [0, -50]];
+        
         moduleProto.tool = function (name, desc) {
             if (typeof name !== 'string') {
                 desc = name;
